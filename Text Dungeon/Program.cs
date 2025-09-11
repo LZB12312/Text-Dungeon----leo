@@ -11,7 +11,6 @@
             int potions = 0;
             int maxHealth = 100;
 
-
             for (int i = rooms.GetLength(0) - 1; i > -1; i--)
             {
                 for (int j = rooms.GetLength(1) - 1; j > rooms.GetLength(0) - i + 1; j--)
