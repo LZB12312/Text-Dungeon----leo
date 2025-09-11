@@ -36,7 +36,7 @@
                         "H: Heal \n" +
                         "E: Quit game");
                 Console.Write("> ");
-                string choice = Console.ReadKey();
+                string? choice = Console.ReadLine();
                 Console.Clear();
                 if (choice != null)
                 {
