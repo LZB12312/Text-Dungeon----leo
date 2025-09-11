@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            int[,] rooms = new int[8, 8];
+            int[, ,] rooms = new int[8, 8, 2]; //first 2 dimentions are rooms. for 3rd dimention: 0 is room difficulty, 1 is times a room has been searched
 
             int health = 100;
             int damage = 10;
@@ -15,7 +15,7 @@
             {
                 for (int j = rooms.GetLength(1) - 1; j > rooms.GetLength(0) - i + 1; j--)
                 {
-                    rooms[i, j] = 1;
+                    rooms[i, j, 0] = 1;
                 }
             }
             int roomRow = 0;
@@ -44,36 +44,46 @@
                 switch (choice)
                 {
                     case "S":   //search function
-                        int searchResult = Search(roomCol, roomRow);
-                        if (searchResult % 4 == 1)
+                        if (rooms[roomRow, roomCol, 1] == 0) // determines if room has been searched already
                         {
-                            potions += 1;
-                            typeEffect($"You found a potion\n" +
-                                $"You now have {potions} potions");
-                            Console.ReadKey();
-                            Console.Clear();
+                            rooms[roomRow, roomCol, 1] = 1;
+                            int searchResult = Search();
+                            if (searchResult % 4 == 1)
+                            {
+                                potions += 1;
+                                typeEffect($"You found a potion\n" +
+                                    $"You now have {potions} potions");
+                                Console.ReadKey();
+                                Console.Clear();
 
-                        }
-                        else if (searchResult % 4 == 2)
-                        {
-                            typeEffect("placeholder.weapon");
-                        }
-                        else if (searchResult % 16 == 0)
-                        {
-                            health -= 20;
-                            typeEffect("You fall onto a set of spikes in the corner\n" +
-                                "You take 20 damage \n" +
-                                $"Your health is now {health}");
-                            Console.ReadKey();
-                            Console.Clear();
+                            }
+                            else if (searchResult % 4 == 2)
+                            {
+                                typeEffect("placeholder.weapon");
+                            }
+                            else if (searchResult % 16 == 0)
+                            {
+                                health -= 20;
+                                typeEffect("You fall onto a set of spikes in the corner\n" +
+                                    "You take 20 damage \n" +
+                                    $"Your health is now {health}");
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                typeEffect("You dont find anything");
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
                         }
                         else
                         {
-                            typeEffect("You dont find anything");
+                            typeEffect("You have already searched this room");
                             Console.ReadKey();
                             Console.Clear();
                         }
-                        break;
+                            break;
 
                     case "I": // stats function
                         typeEffect($"Your health is {health}\n" +
@@ -121,7 +131,7 @@
 
 
 
-        public static int Search(int RowR, int columbR) //search random number
+        public static int Search() //search random number
         {
             Random rand = new Random();
             int found = rand.Next(1, 65);
@@ -136,7 +146,7 @@
             return (returnArray);
         }
 
-        public static int clamp(int value, int min, int max) //clamp function
+        public static int clamp(int value, int min, int max) //prevents number from exceeding given value
         {
             return (value < min) ? min : (value > max) ? max : value;
         }
@@ -149,7 +159,6 @@
             }
             Console.WriteLine();
         }
-
 
         public static void Save()
         {
