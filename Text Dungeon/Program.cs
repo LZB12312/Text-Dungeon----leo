@@ -43,6 +43,10 @@
                 }
                 switch (choice)
                 {
+                    case "M":
+                        typeEffect(movementMessage(roomRow, roomCol));
+                        Console.Write("> ");
+                        break;
                     case "S":   //search function
                         if (rooms[roomRow, roomCol, 1] == 0) // determines if room has been searched already
                         {
@@ -130,7 +134,20 @@
         }
 
 
-
+        public static string movementMessage(int rRow, int rCol)
+        {
+            switch (rRow, rCol)
+            { 
+                case(rRow != 0 && rCol != 0):
+                    return ("");
+                case (rRow != 0 && rCol != 7):
+                    return ("");
+                case(rRow !=7 && rCol != 0):
+                    return ("");
+                case(rRow != 7 && rCol != 7):
+                    return ("");
+            }
+        }
         public static int Search() //search random number
         {
             Random rand = new Random();
