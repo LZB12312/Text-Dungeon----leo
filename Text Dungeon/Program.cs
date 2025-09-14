@@ -44,8 +44,10 @@
                 switch (choice)
                 {
                     case "M":
-                        typeEffect(movementMessage(roomRow, roomCol));
+                        typeEffect(moveMessage(roomRow, roomCol, rooms));
                         Console.Write("> ");
+                        string? moveDirection = Console.ReadLine();
+                        Console.Clear();
                         break;
                     case "S":   //search function
                         if (rooms[roomRow, roomCol, 1] == 0) // determines if room has been searched already
@@ -133,20 +135,27 @@
 
         }
 
-
-        public static string movementMessage(int rRow, int rCol)
+        public static string moveMessage(int rRow, int rCol, int[, ,] rooms) 
         {
-            switch (rRow, rCol)
-            { 
-                case(rRow != 0 && rCol != 0):
-                    return ("");
-                case (rRow != 0 && rCol != 7):
-                    return ("");
-                case(rRow !=7 && rCol != 0):
-                    return ("");
-                case(rRow != 7 && rCol != 7):
-                    return ("");
+            string moveMessage = ("");
+            moveMessage += ("Choose a direction: ");
+            if (rRow != rooms.GetLength(0) - 1)
+            {
+                moveMessage += ("\n N: North ");
             }
+            if (rCol != rooms.GetLength(1) - 1)
+            {
+                moveMessage += ("\n E: East");
+            }
+            if (rRow != 0)
+            {
+                moveMessage += ("\n S: South");
+            }
+            if (rCol != 0)
+            {
+                moveMessage += ("\n W: West");
+            }
+            return(moveMessage);
         }
         public static int Search() //search random number
         {
