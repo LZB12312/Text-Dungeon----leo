@@ -130,7 +130,7 @@
                         Environment.Exit(0);
                         break;
                     default:
-                        typeEffect("Invalid opton");
+                        typeEffect("Invalid input");
                         Console.ReadKey();
                         Console.Clear();
                         break;
