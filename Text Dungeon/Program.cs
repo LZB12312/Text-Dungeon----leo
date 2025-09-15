@@ -129,7 +129,11 @@
                     case "E":  //exit function
                         Environment.Exit(0);
                         break;
-
+                    default:
+                        typeEffect("Invalid opton");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
                 }
             }
 
