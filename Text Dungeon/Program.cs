@@ -47,7 +47,11 @@
                         typeEffect(moveMessage(roomRow, roomCol, rooms));
                         Console.Write("> ");
                         string? moveDirection = Console.ReadLine();
-                        switch (moveDirection.ToUpper())
+                        if (moveDirection != null)
+                        {
+                            moveDirection = moveDirection.ToUpper();
+                        }
+                        switch(moveDirection)
                         {
                             case "N":
                                 if (roomRow != rooms.GetLength(0) - 1)
