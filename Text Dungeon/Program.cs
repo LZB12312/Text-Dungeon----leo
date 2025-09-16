@@ -47,7 +47,77 @@
                         typeEffect(moveMessage(roomRow, roomCol, rooms));
                         Console.Write("> ");
                         string? moveDirection = Console.ReadLine();
+                        switch (moveDirection.ToUpper())
+                        {
+                            case "N":
+                                if (roomRow != rooms.GetLength(0) - 1)
+                                {
+                                    roomRow += 1;
+                                    Console.WriteLine("You move a room north");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You can not move in this direction");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                break;
+                            case "E":
+                                if (roomCol != rooms.GetLength(1) - 1)
+                                {
+                                    roomCol += 1;
+                                    Console.WriteLine("You move a room east");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You can not move in this direction");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                break;
+                            case "S":
+                                if (roomRow != 0)
+                                {
+                                    roomRow -= 1;
+                                    Console.WriteLine("You move a room south");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You can not move in this direction");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                break;
+                            case "W":
+                                if (roomCol != 0)
+                                {
+                                    roomCol -= 1;
+                                    Console.WriteLine("You move a room west");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You can not move in this direction");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                break;
+                            default:
+                                Console.WriteLine("invalid direction");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                        }
+
                         Console.Clear();
+
                         break;
                     case "S":   //search function
                         if (rooms[roomRow, roomCol, 1] == 0) // determines if room has been searched already
@@ -185,7 +255,7 @@
             for (int i = 0; i < message.Length; i++)
             {
                 Console.Write(message[i]);
-                Thread.Sleep(8);
+                Thread.Sleep(6);
             }
             Console.WriteLine();
         }
